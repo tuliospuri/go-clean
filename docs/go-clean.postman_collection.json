@@ -1,0 +1,37 @@
+{
+	"info": {
+		"name": "go-clean",
+		"_postman_id": "e221fc8c-2865-fefe-7163-88bbb896d1cd",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Birthday\"\n}"
+				},
+				"url": {
+					"raw": "localhost/events",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"events"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
