@@ -15,12 +15,14 @@ import (
 func main() {
     // Repositories
     eventRep := rep.NewEventRepository()
+    errorRep := rep.NewErrorRepository()
 
     // Services
     eventServ := serv.NewEventService(eventRep)
+    errorServ := serv.NewErrorService(errorRep)
 
     // Interactors
-    eventCreateBs := eventBs.NewCreateBs(eventServ)
+    eventCreateBs := eventBs.NewCreateBs(eventServ, errorServ)
 
     // Controllers
     eventCreateCtrl := eventCtrl.NewCreateController(eventCreateBs)

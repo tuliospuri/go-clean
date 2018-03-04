@@ -1,9 +1,9 @@
 package interactors
 
 import (
-    serv "tuliospuri/go-clean/services"
+    m "tuliospuri/go-clean/services/models"
 )
 
 type EventCreateBs interface {
-    Run(event serv.Event) serv.H
+    Run(event m.Event) m.Generic
 }

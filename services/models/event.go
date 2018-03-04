@@ -1,6 +1,4 @@
-package services
-
-type H map[string]interface{}
+package models
 
 type Event struct {
     Id int

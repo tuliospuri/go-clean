@@ -6,7 +6,7 @@ import (
     "encoding/json"
     ctrl "tuliospuri/go-clean/adapters/controllers"
     bs "tuliospuri/go-clean/interactors"
-    serv "tuliospuri/go-clean/services"
+    m "tuliospuri/go-clean/services/models"
     pres "tuliospuri/go-clean/adapters/presenters"
 )
 
@@ -21,11 +21,11 @@ func NewCreateController(eventCreateBs bs.EventCreateBs) ctrl.Controller {
 func (c eventCreateCtrl) Execute(res http.ResponseWriter, req *http.Request) {
 
     // Extracts data from http request and converts to the interactor
-    var params serv.H
+    var params m.Generic
     body, _ := ioutil.ReadAll(req.Body)
     json.Unmarshal(body, &params)
 
-    event := serv.Event{
+    event := m.Event{
         Name: params["name"].(string),
     }
 

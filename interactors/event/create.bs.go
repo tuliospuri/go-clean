@@ -1,22 +1,32 @@
 package event
 
 import (
-    "tuliospuri/go-clean/interactors"
+    bs "tuliospuri/go-clean/interactors"
     serv "tuliospuri/go-clean/services"
+    m "tuliospuri/go-clean/services/models"
 )
 
 type eventCreateBs struct {
     eventServ serv.EventService
+    errorServ serv.ErrorService
 }
 
-func NewCreateBs(eventServ serv.EventService) interactors.EventCreateBs {
-    return eventCreateBs{eventServ}
+func NewCreateBs(
+    eventServ serv.EventService,
+    errorServ serv.ErrorService) bs.EventCreateBs {
+
+    return eventCreateBs{eventServ, errorServ}
 }
 
-func (i eventCreateBs) Run(event serv.Event) serv.H {
+func (i eventCreateBs) Run(event m.Event) m.Generic {
+
+    if event.Name == "test" {
+        return i.errorServ.Get("invalid_name").Conv()
+    }
+
     created := i.eventServ.Create(event.Name)
 
-    return serv.H{
+    return m.Generic{
         "Id": created.Id,
         "Name": event.Name,
     }

@@ -2,9 +2,9 @@ package presenters
 
 import (
     "net/http"
-    serv "tuliospuri/go-clean/services"
+    m "tuliospuri/go-clean/services/models"
 )
 
 type Presenter interface {
-    GetOutput(res http.ResponseWriter, req *http.Request, params serv.H)
+    GetOutput(res http.ResponseWriter, req *http.Request, params m.Generic)
 }

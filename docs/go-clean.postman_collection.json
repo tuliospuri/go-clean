@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Birthday\"\n}"
+					"raw": "{\n\t\"name\": \"test\"\n}"
 				},
 				"url": {
 					"raw": "localhost/events",
@@ -29,7 +29,7 @@
 						"events"
 					]
 				},
-				"description": ""
+				"description": "Try `name: test` and `name: Birthday`."
 			},
 			"response": []
 		}
