@@ -4,6 +4,5 @@ RUN apk add --update tzdata bash wget curl git;
 
 RUN mkdir -p $GOPATH/bin && \
     go get github.com/pilu/fresh && \
-    go get github.com/gorilla/mux
-
-WORKDIR /go/src/tuliospuri/go-clean
+    go get github.com/gorilla/mux && \
+    go get github.com/xeipuuv/gojsonschema

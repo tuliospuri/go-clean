@@ -1,7 +1,7 @@
 package repositories
 
 import (
-    m "tuliospuri/go-clean/services/models"
+    m "tuliospuri/go-clean/src/services/models"
 )
 
 type EventRepository interface {

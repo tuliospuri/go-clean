@@ -4,15 +4,19 @@ import (
     "log"
     "net/http"
 
-    rep "tuliospuri/go-clean/repositories"
-    serv "tuliospuri/go-clean/services"
-    eventBs "tuliospuri/go-clean/interactors/event"
-    eventCtrl "tuliospuri/go-clean/adapters/controllers/event"
+    rep "tuliospuri/go-clean/src/repositories"
+    serv "tuliospuri/go-clean/src/services"
+    eventBs "tuliospuri/go-clean/src/interactors/event"
+    eventCtrl "tuliospuri/go-clean/src/adapters/controllers/event"
+    val "tuliospuri/go-clean/src/adapters/validators"
 
     "github.com/gorilla/mux"
 )
 
 func main() {
+    // Frameworks and drivers
+    jsonSchema := val.NewJsonSchemaValidator()
+
     // Repositories
     eventRep := rep.NewEventRepository()
     errorRep := rep.NewErrorRepository()
@@ -20,9 +24,10 @@ func main() {
     // Services
     eventServ := serv.NewEventService(eventRep)
     errorServ := serv.NewErrorService(errorRep)
+    validatorServ := serv.NewValidatorService(jsonSchema)
 
     // Interactors
-    eventCreateBs := eventBs.NewCreateBs(eventServ, errorServ)
+    eventCreateBs := eventBs.NewCreateBs(eventServ, errorServ, validatorServ)
 
     // Controllers
     eventCreateCtrl := eventCtrl.NewCreateController(eventCreateBs)

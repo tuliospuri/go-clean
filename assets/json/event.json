@@ -1,0 +1,14 @@
+{
+  "$id": "event.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "$id": "/properties/name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

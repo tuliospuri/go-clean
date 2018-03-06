@@ -3,7 +3,7 @@ package presenters
 import (
     "net/http"
     "encoding/json"
-    m "tuliospuri/go-clean/services/models"
+    m "tuliospuri/go-clean/src/services/models"
 )
 
 type jsonPresenter struct {}

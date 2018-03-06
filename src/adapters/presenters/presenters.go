@@ -2,7 +2,7 @@ package presenters
 
 import (
     "net/http"
-    m "tuliospuri/go-clean/services/models"
+    m "tuliospuri/go-clean/src/services/models"
 )
 
 type Presenter interface {

@@ -1,7 +1,7 @@
 package repositories
 
 import (
-    m "tuliospuri/go-clean/services/models"
+    m "tuliospuri/go-clean/src/services/models"
 )
 
 type errorRep struct {
@@ -23,7 +23,8 @@ func (r errorRep) GetByName(name string) m.Error {
 }
 
 func getErrors() []m.Error {
-    errs := make([]m.Error, 0, 1)
+    errs := make([]m.Error, 0, 2)
     errs = append(errs, m.Error{1001, "invalid_name", "Invalid name"})
+    errs = append(errs, m.Error{1002, "invalid_schema", "Invalid schema"})
     return errs
 }

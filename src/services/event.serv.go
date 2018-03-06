@@ -1,8 +1,8 @@
 package services
 
 import (
-    rep "tuliospuri/go-clean/repositories"
-    m "tuliospuri/go-clean/services/models"
+    rep "tuliospuri/go-clean/src/repositories"
+    m "tuliospuri/go-clean/src/services/models"
 )
 
 type eventService struct {
@@ -13,11 +13,11 @@ func NewEventService(eventRep rep.EventRepository) EventService {
     return eventService{eventRep}
 }
 
-func (s eventService) Create(name string) m.Event {
-    id := s.eventRep.Save(name)
+func (s eventService) Create(event m.Event) m.Event {
+    id := s.eventRep.Save(event.Name)
 
     return m.Event{
         Id: id,
-        Name: name,
+        Name: event.Name,
     }
 }

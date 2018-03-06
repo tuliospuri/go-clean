@@ -1,8 +1,8 @@
 package services
 
 import (
-    rep "tuliospuri/go-clean/repositories"
-    m "tuliospuri/go-clean/services/models"
+    rep "tuliospuri/go-clean/src/repositories"
+    m "tuliospuri/go-clean/src/services/models"
 )
 
 type errorService struct {

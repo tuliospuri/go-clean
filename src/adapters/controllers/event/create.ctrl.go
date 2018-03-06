@@ -4,10 +4,10 @@ import (
     "io/ioutil"
     "net/http"
     "encoding/json"
-    ctrl "tuliospuri/go-clean/adapters/controllers"
-    bs "tuliospuri/go-clean/interactors"
-    m "tuliospuri/go-clean/services/models"
-    pres "tuliospuri/go-clean/adapters/presenters"
+    ctrl "tuliospuri/go-clean/src/adapters/controllers"
+    bs "tuliospuri/go-clean/src/interactors"
+    m "tuliospuri/go-clean/src/services/models"
+    pres "tuliospuri/go-clean/src/adapters/presenters"
 )
 
 type eventCreateCtrl struct {
@@ -25,12 +25,8 @@ func (c eventCreateCtrl) Execute(res http.ResponseWriter, req *http.Request) {
     body, _ := ioutil.ReadAll(req.Body)
     json.Unmarshal(body, &params)
 
-    event := m.Event{
-        Name: params["name"].(string),
-    }
-
     // Execute interactor
-    resp := c.eventCreateBs.Run(event)
+    resp := c.eventCreateBs.Run(params)
 
     // Call presenter to format interactor's response
     jsonPresenter := pres.NewJsonPresenter()
