@@ -7,8 +7,10 @@ import (
     rep "tuliospuri/go-clean/src/repositories"
     serv "tuliospuri/go-clean/src/services"
     eventBs "tuliospuri/go-clean/src/interactors/event"
+    authBs "tuliospuri/go-clean/src/interactors/auth"
     eventCtrl "tuliospuri/go-clean/src/adapters/controllers/event"
     val "tuliospuri/go-clean/src/adapters/validators"
+    mw "tuliospuri/go-clean/src/adapters/middlewares"
 
     "github.com/gorilla/mux"
 )
@@ -27,12 +29,19 @@ func main() {
     validatorServ := serv.NewValidatorService(jsonSchema)
 
     // Interactors
+    authBs := authBs.NewAuthBs(errorServ)
     eventCreateBs := eventBs.NewCreateBs(eventServ, errorServ, validatorServ)
 
-    // Controllers
+    // Controllers and middlewares
+    authMw := mw.NewAuthMiddleware(authBs)
     eventCreateCtrl := eventCtrl.NewCreateController(eventCreateBs)
 
     router := mux.NewRouter().StrictSlash(true)
-    router.HandleFunc("/events", eventCreateCtrl.Execute).Methods("POST")
+
+    router.
+        Use(authMw.Execute)
+    router.
+        HandleFunc("/events", eventCreateCtrl.Execute).Methods("POST")
+
     log.Fatal(http.ListenAndServe(":8084", router))
 }

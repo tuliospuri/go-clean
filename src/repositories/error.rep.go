@@ -23,8 +23,9 @@ func (r errorRep) GetByName(name string) m.Error {
 }
 
 func getErrors() []m.Error {
-    errs := make([]m.Error, 0, 2)
+    errs := make([]m.Error, 0, 3)
     errs = append(errs, m.Error{1001, "invalid_name", "Invalid name"})
     errs = append(errs, m.Error{1002, "invalid_schema", "Invalid schema"})
+    errs = append(errs, m.Error{1003, "forbidden", "Forbidden"})
     return errs
 }

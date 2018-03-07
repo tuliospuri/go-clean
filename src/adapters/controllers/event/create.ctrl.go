@@ -29,6 +29,6 @@ func (c eventCreateCtrl) Execute(res http.ResponseWriter, req *http.Request) {
     resp := c.eventCreateBs.Run(params)
 
     // Call presenter to format interactor's response
-    jsonPresenter := pres.NewJsonPresenter()
-    jsonPresenter.GetOutput(res, req, resp)
+    jsonPres := pres.NewJsonPresenter()
+    jsonPres.GetOutput(res, req, resp)
 }
